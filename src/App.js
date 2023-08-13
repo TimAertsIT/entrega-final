@@ -1,5 +1,7 @@
 import {useState, useEffect} from "react";
 import axios from "axios"; 
+import { PlantsContext } from '../src/components/Provider/Provider';
+import Router from './app/Router';
 
 const App = () => {
   const [plants, setPlants] = useState([]);
@@ -17,19 +19,11 @@ const App = () => {
   }, []);
 
   return (
-    <div>
-      <h1>Plant List</h1>
-      <ul>
-        {plants.map(plant => (
-          <li key={plant.id}>{plant.common_name}
-          {plant.default_image && (
-            <img src={plant.default_image.regular_url} alt={plant.common_name} width="80" />
-          )}
-        </li>
-      ))}
-    </ul>
-  </div>
-);}
+    <PlantsContext.Provider value={plants}>
+      <Router />
+    </PlantsContext.Provider>
+  );
+}
 
 
 export default App;
