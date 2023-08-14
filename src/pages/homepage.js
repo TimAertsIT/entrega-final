@@ -1,5 +1,6 @@
 import { PlantsContext } from '../components/Provider/Provider';
 import Navigation from '../components/Navigation/Navigation';
+import Header from '../components/Header/Header';
 import { useContext } from 'react';
 
 const HomePage = () => {
@@ -8,6 +9,7 @@ const HomePage = () => {
   return (
     <div>
         <Navigation />
+        <Header />
       <h1>Plant List</h1>
       <ul>
         {plants.map(plant => (

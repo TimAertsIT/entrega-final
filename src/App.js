@@ -2,6 +2,7 @@ import {useState, useEffect} from "react";
 import axios from "axios"; 
 import { PlantsContext } from '../src/components/Provider/Provider';
 import Router from './app/Router';
+import { GlobalStyle } from './App.styles.js'; 
 
 const App = () => {
   const [plants, setPlants] = useState([]);
@@ -19,9 +20,12 @@ const App = () => {
   }, []);
 
   return (
-    <PlantsContext.Provider value={plants}>
-      <Router />
-    </PlantsContext.Provider>
+    <>
+      <GlobalStyle />
+      <PlantsContext.Provider value={plants}>
+        <Router />
+      </PlantsContext.Provider>
+    </>
   );
 }
 
