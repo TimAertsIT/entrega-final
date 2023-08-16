@@ -8,5 +8,8 @@ export const GlobalStyle = createGlobalStyle`
     padding-right: 0; 
     margin-bottom: 0;
     box-sizing: border-box;
+    body {
+      font-family: 'Varela Round', sans-serif;
+    }
   }
 `;

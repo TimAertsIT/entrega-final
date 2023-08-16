@@ -27,8 +27,8 @@ export const FilterWrapper = styled.div`
   `;
 
   export const SelectButton = styled.button`
-  background: white; 
-  color: darkgreen;
+  background: ${props => (props.selected ? 'darkgreen' : 'white')}; 
+  color: ${props => (props.selected ? 'white' : 'darkgreen')};
   text-transform: uppercase; 
   padding-top: 20px;
   padding-bottom: 20px; 

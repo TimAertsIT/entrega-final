@@ -2,9 +2,29 @@ import { PlantsContext } from '../Provider/Provider';
 import { useContext } from 'react';
 import { StyledBackground, Styledh1, StyledCard, StyledCardList, StyledImage, StyledButton, StyledCommonName } from './PlantList.styles';
 import defaultImage from '../../assets/default-image.jpg';
+import { FilterContext } from '../Provider/FilterContext';
 
 const PlantList = () => {
   const { plants, plantDetails } = useContext(PlantsContext);
+  const {
+    indoorSelected,
+    outdoorSelected,
+    fullShadeSelected,
+    partShadeSelected,
+    partSunSelected,
+    fullSunSelected,
+    frequentSelected,
+    averageSelected,
+    minimalSelected,
+    neverSelected,
+    petsSelected,
+    humansSelected,
+    edibleSelected,
+    treeSelected,
+    birdsSelected,
+    flowersSelected,
+    fruitsSelected
+  } = useContext(FilterContext);
 
   return (
     <StyledBackground>
