@@ -7,18 +7,23 @@ import { GlobalStyle } from './App.styles.js';
 const App = () => {
   const [plants, setPlants] = useState([]);
   const [plantDetails, setPlantDetails] = useState([]);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://perenual.com/api/species-list?page=1&key=sk-APOK64bf9bf56ec241667');
-        setPlants(response.data.data);
+        const response = await axios.get(`https://perenual.com/api/species-list?page=${page}&key=sk-APOK64bf9bf56ec241667`);
+        if (page === 1) {
+          setPlants(response.data.data);
+        } else {
+          setPlants(prevPlants => [...prevPlants, ...response.data.data]);
+        }
       } catch (error) {
         console.error(error);
       }
     };
     fetchData();
-  }, []);
+  }, [page]);
 
   useEffect(() => {
     const fetchPlantDetails = async () => {
@@ -35,10 +40,14 @@ const App = () => {
     }
   }, [plants]);
 
+  const loadMore = () => {
+       setPage(prevPage => prevPage + 1);
+  };
+
   return (
     <>
       <GlobalStyle />
-      <PlantsContext.Provider value={ { plants, plantDetails }}>
+      <PlantsContext.Provider value={ { plants, plantDetails, loadMore }}>
         <Router />
       </PlantsContext.Provider>
     </>

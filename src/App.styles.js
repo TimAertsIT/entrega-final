@@ -7,6 +7,7 @@ export const GlobalStyle = createGlobalStyle`
     padding-left: 0;
     padding-right: 0; 
     margin-bottom: 0;
+    padding-bottom: 0; 
     box-sizing: border-box;
     body {
       font-family: 'Varela Round', sans-serif;

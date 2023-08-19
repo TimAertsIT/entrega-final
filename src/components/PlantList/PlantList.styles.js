@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const StyledBackground = styled.div`
 background-color: #002400; 
+padding-bottom: 30px; 
 `;
 
 export const Styledh1 = styled.h1`
@@ -59,4 +60,22 @@ export const StyledCommonName = styled.p`
    color: darkgreen; 
    text-transform: uppercase; 
    padding-top: 10px; 
+`;
+
+export const LoadmoreButton = styled.button`
+  background-color: white;
+  color: darkgreen; 
+  text-transform: uppercase;
+  border: 1px solid #002400;
+  border-radius: 15px; 
+  padding: 10px; 
+  margin-top: 20px;
+  text-align: center; 
+  display: block; 
+  margin-left: auto;
+  margin-right: auto; 
+  transition: background-color .5s, color .5s;
+  &:hover {
+    background-color: darkgreen;
+    color: white; 
 `;
