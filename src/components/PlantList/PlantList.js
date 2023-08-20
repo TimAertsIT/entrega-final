@@ -4,8 +4,9 @@ import { StyledBackground, Styledh1, StyledCard, StyledCardList, StyledImage, St
 import defaultImage from '../../assets/default-image.jpg';
 import { FilterContext } from '../Provider/FilterContext';
 import { useState, useEffect } from "react";
+import PlantOverview from '../PlantOverview/PlantOverview';
 
-const PlantList = () => {
+const PlantList = ({ handlePlantClick, selectedPlant }) => {
     const { plants, plantDetails, loadMore } = useContext(PlantsContext);
     const {
         indoorSelected,
@@ -112,11 +113,11 @@ const PlantList = () => {
                         return (
                             <StyledCard key={plant.id}>
                                 {plant.default_image ? (
-                                    <StyledImage src={plant.default_image.regular_url} alt={plant.common_name} />
+                                    <StyledImage onClick={() => handlePlantClick(plant)} src={plant.default_image.regular_url} alt={plant.common_name} />
                                 ) : (
-                                    <StyledImage src={defaultImage} alt={plant.common_name} height="382" />
+                                    <StyledImage onClick={() => handlePlantClick(plant)} src={defaultImage} alt={plant.common_name} height="382" />
                                 )}
-                                <StyledCommonName>
+                                <StyledCommonName onClick={() => handlePlantClick(plant)} >
                                     {plant.common_name}</StyledCommonName>
                                 <StyledButton>Add to MyPlants</StyledButton>
                             </StyledCard>

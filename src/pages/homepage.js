@@ -5,7 +5,7 @@ import Filter from '../components/Filter/Filter';
 import PlantList from '../components/PlantList/PlantList';
 import { FilterContext } from '../components/Provider/FilterContext';
 
-const HomePage = () => {
+const HomePage = ( { onPlantClick } ) => {
     const [indoorSelected, setIndoorSelected] = useState(false);
     const [outdoorSelected, setOutdoorSelected] = useState(false);
     const [fullShadeSelected, setFullShadeSelected] = useState(false);
@@ -84,7 +84,7 @@ const HomePage = () => {
                     fruitsSelected = {fruitsSelected}
                     setFruitsSelected = {setFruitsSelected}
                     />
-            <PlantList />
+            <PlantList onPlantClick />
           </div>
         </FilterContext.Provider>
       );

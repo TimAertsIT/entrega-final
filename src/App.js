@@ -1,13 +1,18 @@
-import {useState, useEffect} from "react";
-import axios from "axios"; 
+import { useState, useEffect } from "react";
+import axios from "axios";
 import { PlantsContext } from '../src/components/Provider/Provider';
 import Router from './app/Router';
-import { GlobalStyle } from './App.styles.js'; 
+import { GlobalStyle } from './App.styles.js';
 
 const App = () => {
   const [plants, setPlants] = useState([]);
   const [plantDetails, setPlantDetails] = useState([]);
   const [page, setPage] = useState(1);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [selectedPlant, setSelectedPlant] = useState(null);
+  const handlePlantClick = (plant) => {
+    setSelectedPlant(plant);
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -41,14 +46,19 @@ const App = () => {
   }, [plants]);
 
   const loadMore = () => {
-       setPage(prevPage => prevPage + 1);
+    setPage(prevPage => prevPage + 1);
   };
 
   return (
     <>
       <GlobalStyle />
-      <PlantsContext.Provider value={ { plants, plantDetails, loadMore }}>
-        <Router />
+      <PlantsContext.Provider value={{ plants, plantDetails, loadMore }}>
+        <Router 
+        isAuthenticated={isAuthenticated}
+        setIsAuthenticated={setIsAuthenticated}
+        handlePlantClick={handlePlantClick}
+        selectedPlant={selectedPlant}
+        />
       </PlantsContext.Provider>
     </>
   );
