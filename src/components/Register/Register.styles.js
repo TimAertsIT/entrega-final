@@ -10,7 +10,7 @@ export const StyledBackground = styled.div`
 export const StyledCard = styled.div`
    background-color: white; 
   border-radius: 20px;
-  width: 600px; 
+  width: 50%; 
   margin-right: auto;
   margin-left: auto;
   display: flex;
@@ -54,7 +54,7 @@ display: block;
   margin: 0 auto;
 `;
 
-export const StyledButtonInput2 = styled.input`
+export const StyledButton = styled.button`
 background-color: white;
 color: darkgreen; 
 border: 1px solid #002400;
@@ -76,6 +76,13 @@ border: 1px solid #002400;
      background-color: darkgreen;
      color: white; 
     cursor: pointer;
+  }
+
+  @media (max-width: 768px) {
+    width: auto;
+    margin-left: auto;
+    display: block; 
+    margin-right: auto;
   }
 `;
 

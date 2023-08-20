@@ -6,7 +6,7 @@ import { FilterContext } from '../Provider/FilterContext';
 import { useState, useEffect } from "react";
 import PlantOverview from '../PlantOverview/PlantOverview';
 
-const PlantList = ({ handlePlantClick, selectedPlant }) => {
+const PlantList = ({ handlePlantClick, selectedPlant, handleHidePlantOverview }) => {
     const { plants, plantDetails, loadMore } = useContext(PlantsContext);
     const {
         indoorSelected,
@@ -29,7 +29,7 @@ const PlantList = ({ handlePlantClick, selectedPlant }) => {
     } = useContext(FilterContext);
 
     const [filteredPlantDetails, setFilteredPlantDetails] = useState([]);
-
+    console.log(selectedPlant); 
     useEffect(() => {
         const newFilteredPlantDetails = plantDetails.filter(plantDetail => {
             // indoor-outdoor filter

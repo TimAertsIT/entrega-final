@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { StyledBackground, StyledCard, StyledH1, StyledP, StyledInput, StyledButtonInput2, StyledForm } from './Register.styles';
+import { StyledBackground, StyledCard, StyledH1, StyledP, StyledInput, StyledButton, StyledForm } from './Register.styles';
 
 const Register = () => {
 
@@ -37,7 +37,7 @@ const Register = () => {
                             <StyledInput type="text" value={name} placeholder="Name" onChange={e => setName(e.target.value)} />
                         </label>
                         <br />
-                        <StyledButtonInput2 type="submit" value="Submit" />
+                        <StyledButton type="submit" value="Submit">Submit</StyledButton>
                     </StyledForm>
                 </StyledCard>
             </StyledBackground>

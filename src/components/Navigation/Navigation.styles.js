@@ -17,9 +17,24 @@ export const NavigationWrapper = styled.div`
     margin: 0 10px;
     color: darkgreen; 
   }
+
+  p:hover {
+    color: #002400;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column; 
+    p {
+      padding-top: 5px; 
+    }
+  }
 `;
 
 export const StyledDiv = styled.div`
   display: flex;
   align-items: center;
+  @media (max-width: 768px) {
+    flex-direction: column; 
+  }
 `;
+

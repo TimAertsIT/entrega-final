@@ -7,12 +7,12 @@ import Plantlist from "../components/PlantList/PlantList";
 
 const Router = ({isAuthenticated,
     setIsAuthenticated, handlePlantClick, 
-    selectedPlant
+    selectedPlant, handleHidePlantOverview, plantDetails
 }) =>
     <BrowserRouter>
         <Routes>
-            <Route index element={<Homepage />} />
-            <Route path="/plantlist" element={<Plantlist handlePlantClick={handlePlantClick} selectedPlant={selectedPlant} />} />
+            <Route index element={<Homepage handlePlantClick={handlePlantClick} selectedPlant={selectedPlant} handleHidePlantOverview={handleHidePlantOverview} plantDetails={plantDetails}/>} />
+            <Route path="/plantlist" element={<Plantlist handlePlantClick={handlePlantClick} selectedPlant={selectedPlant} handleHidePlantOverview={handleHidePlantOverview} plantDetails={plantDetails}/>} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/login" element={<LoginPage isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated}/>} />
             <Route path="*" element={<NotFoundPage />} />

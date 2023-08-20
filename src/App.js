@@ -13,6 +13,10 @@ const App = () => {
   const handlePlantClick = (plant) => {
     setSelectedPlant(plant);
   }
+  const handleHidePlantOverview = () => {
+    setSelectedPlant(null);
+  };
+  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -58,6 +62,8 @@ const App = () => {
         setIsAuthenticated={setIsAuthenticated}
         handlePlantClick={handlePlantClick}
         selectedPlant={selectedPlant}
+        handleHidePlantOverview={handleHidePlantOverview}
+        plantDetails={plantDetails}
         />
       </PlantsContext.Provider>
     </>
