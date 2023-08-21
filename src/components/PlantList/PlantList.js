@@ -6,7 +6,7 @@ import { FilterContext } from '../Provider/FilterContext';
 import { useState, useEffect } from "react";
 import PlantOverview from '../PlantOverview/PlantOverview';
 
-const PlantList = ({ handlePlantClick, selectedPlant, handleHidePlantOverview }) => {
+const PlantList = ({ handlePlantClick, selectedPlant, isAuthenticated }) => {
     const { plants, plantDetails, loadMore } = useContext(PlantsContext);
     const {
         indoorSelected,
@@ -29,7 +29,8 @@ const PlantList = ({ handlePlantClick, selectedPlant, handleHidePlantOverview })
     } = useContext(FilterContext);
 
     const [filteredPlantDetails, setFilteredPlantDetails] = useState([]);
-    console.log(selectedPlant); 
+    console.log(selectedPlant);
+    console.log(isAuthenticated);
     useEffect(() => {
         const newFilteredPlantDetails = plantDetails.filter(plantDetail => {
             // indoor-outdoor filter
@@ -100,6 +101,19 @@ const PlantList = ({ handlePlantClick, selectedPlant, handleHidePlantOverview })
         }
     }, [filteredPlantDetails]);
 
+    const handleAddToMyPlants = (plant, isAuthenticated) => {
+        console.log(isAuthenticated); 
+        if (isAuthenticated) {
+          const loggedInEmail = localStorage.getItem("loggedInEmail");
+          const users = JSON.parse(localStorage.getItem("users"));
+          const user = users.find((user) => user.email === loggedInEmail);
+          user.myPlants.push(plant);
+          localStorage.setItem("users", JSON.stringify(users));
+        } else {
+          alert("You need to be logged in to add plants");
+        }
+      };
+
     return (
         <div>
             <StyledBackground>
@@ -109,7 +123,7 @@ const PlantList = ({ handlePlantClick, selectedPlant, handleHidePlantOverview })
                         const plant = plants.find(plant => plant.id === plantDetail.id);
                         if (!plant) {
                             return null;
-                          }
+                        }
                         return (
                             <StyledCard key={plant.id}>
                                 {plant.default_image ? (
@@ -119,7 +133,7 @@ const PlantList = ({ handlePlantClick, selectedPlant, handleHidePlantOverview })
                                 )}
                                 <StyledCommonName onClick={() => handlePlantClick(plant)} >
                                     {plant.common_name}</StyledCommonName>
-                                <StyledButton>Add to MyPlants</StyledButton>
+                                <StyledButton onClick={() => handleAddToMyPlants(plant, isAuthenticated)}>Add to MyPlants</StyledButton>
                             </StyledCard>
                         );
                     })}

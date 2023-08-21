@@ -18,13 +18,25 @@ export const NavigationWrapper = styled.div`
     color: darkgreen; 
   }
 
+  a {
+    text-transform: uppercase;
+    margin: 0 10px;
+    color: darkgreen; 
+  }
+
   p:hover {
+    color: #002400;
+  }
+
+  a:hover {
     color: #002400;
   }
 
   @media (max-width: 768px) {
     flex-direction: column; 
-    p {
+ 
+
+    a {
       padding-top: 5px; 
     }
   }

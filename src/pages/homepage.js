@@ -6,7 +6,7 @@ import PlantList from '../components/PlantList/PlantList';
 import PlantOverview from "../components/PlantOverview/PlantOverview"; 
 import { FilterContext } from '../components/Provider/FilterContext';
 
-const HomePage = ( { handlePlantClick, selectedPlant, handleHidePlantOverview, plantDetails }) => {
+const HomePage = ( { handlePlantClick, selectedPlant, handleHidePlantOverview, plantDetails, isAuthenticated, handleLogout }) => {
     const [indoorSelected, setIndoorSelected] = useState(false);
     const [outdoorSelected, setOutdoorSelected] = useState(false);
     const [fullShadeSelected, setFullShadeSelected] = useState(false);
@@ -50,7 +50,7 @@ const HomePage = ( { handlePlantClick, selectedPlant, handleHidePlantOverview, p
           <div>
           {!selectedPlant ? (
         <>
-            <Navigation />
+            <Navigation isAuthenticated={isAuthenticated} handleLogout={handleLogout}/>
             <Header />
             <Filter indoorSelected={indoorSelected}
                     setIndoorSelected={setIndoorSelected}
@@ -87,7 +87,7 @@ const HomePage = ( { handlePlantClick, selectedPlant, handleHidePlantOverview, p
                     fruitsSelected = {fruitsSelected}
                     setFruitsSelected = {setFruitsSelected}
                     />
-            <PlantList handlePlantClick={handlePlantClick} selectedPlant={selectedPlant} handleHidePlantOverview={handleHidePlantOverview} plantDetails={plantDetails}/>
+            <PlantList handlePlantClick={handlePlantClick} selectedPlant={selectedPlant} handleHidePlantOverview={handleHidePlantOverview} plantDetails={plantDetails} isAuthenticated={isAuthenticated}/>
             </>
       ) : (
                 <PlantOverview selectedPlant={selectedPlant} handleHidePlantOverview={handleHidePlantOverview} plantDetails={plantDetails} />

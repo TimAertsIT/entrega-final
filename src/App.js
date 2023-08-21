@@ -8,15 +8,25 @@ const App = () => {
   const [plants, setPlants] = useState([]);
   const [plantDetails, setPlantDetails] = useState([]);
   const [page, setPage] = useState(1);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(JSON.parse(localStorage.getItem("isAuthenticated")) || false
+  );
   const [selectedPlant, setSelectedPlant] = useState(null);
   const handlePlantClick = (plant) => {
     setSelectedPlant(plant);
   }
+  
+  useEffect(() => {
+    localStorage.setItem("isAuthenticated", JSON.stringify(isAuthenticated));
+  }, [isAuthenticated]);
+
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+  };
+
+
   const handleHidePlantOverview = () => {
     setSelectedPlant(null);
-  };
-  
+  }; 
 
   useEffect(() => {
     const fetchData = async () => {
@@ -64,6 +74,7 @@ const App = () => {
         selectedPlant={selectedPlant}
         handleHidePlantOverview={handleHidePlantOverview}
         plantDetails={plantDetails}
+        handleLogout={handleLogout}
         />
       </PlantsContext.Provider>
     </>

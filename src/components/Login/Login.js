@@ -34,9 +34,10 @@ const Login = ({ setIsAuthenticated }) => {
             setEmail('');
             setPassword('');
             setIsAuthenticated(true);
+            localStorage.setItem("loggedInEmail", email);
             window.location.href = '../';
         } else {
-            console.log('login failed');
+            alert('Wrong password, please try again');
             setIsPasswordCorrect(false);
         }
     };

@@ -3,18 +3,26 @@ import Homepage from "../pages/homepage";
 import NotFoundPage from "../pages/notfoundpage";
 import RegisterPage from "../pages/registerpage";
 import LoginPage from "../pages/loginpage";
-import Plantlist from "../components/PlantList/PlantList"; 
+import MyPlantsPage from "../pages/myplantspage";
+import Plantlist from "../components/PlantList/PlantList";
 
-const Router = ({isAuthenticated,
-    setIsAuthenticated, handlePlantClick, 
-    selectedPlant, handleHidePlantOverview, plantDetails
+const Router = ({ isAuthenticated,
+    setIsAuthenticated, handlePlantClick,
+    selectedPlant, handleHidePlantOverview, plantDetails, handleLogout
 }) =>
     <BrowserRouter>
         <Routes>
-            <Route index element={<Homepage handlePlantClick={handlePlantClick} selectedPlant={selectedPlant} handleHidePlantOverview={handleHidePlantOverview} plantDetails={plantDetails}/>} />
-            <Route path="/plantlist" element={<Plantlist handlePlantClick={handlePlantClick} selectedPlant={selectedPlant} handleHidePlantOverview={handleHidePlantOverview} plantDetails={plantDetails}/>} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/login" element={<LoginPage isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated}/>} />
+            <Route index element={<Homepage handleLogout={handleLogout} handlePlantClick={handlePlantClick} selectedPlant={selectedPlant} handleHidePlantOverview={handleHidePlantOverview} plantDetails={plantDetails} isAuthenticated={isAuthenticated} />} />
+            <Route path="/plantlist" element={<Plantlist handlePlantClick={handlePlantClick} isAuthenticated={isAuthenticated} selectedPlant={selectedPlant} handleHidePlantOverview={handleHidePlantOverview} plantDetails={plantDetails} />} />
+            <Route path="/register" element={<RegisterPage isAuthenticated={isAuthenticated} />} />
+            <Route path="/myplants" element={ isAuthenticated ? (
+                        <MyPlantsPage plantDetails={plantDetails} isAuthenticated={isAuthenticated} handleLogout={handleLogout} />
+                    ) : (
+                        <Navigate to="/login" />
+                    )
+                }
+            />
+            <Route path="/login" element={<LoginPage isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />} />
             <Route path="*" element={<NotFoundPage />} />
         </Routes>
     </BrowserRouter >

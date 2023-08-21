@@ -6,16 +6,18 @@ const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
+    const [myPlants, setMyPlants] = useState([]); 
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const user = { email, password, name };
+        const user = { email, password, name, myPlants };
         let users = JSON.parse(localStorage.getItem('users')) || [];
         users.push(user);
         localStorage.setItem('users', JSON.stringify(users));
         setEmail('');
         setPassword('');
         setName('');
+        setMyPlants([]); 
     }
 
     return (

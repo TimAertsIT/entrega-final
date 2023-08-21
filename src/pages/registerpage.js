@@ -1,10 +1,10 @@
 import Register from "../components/Register/Register";
 import Navigation from "../components/Navigation/Navigation";
 
-const RegisterPage = () => {
+const RegisterPage = ( {isAuthenticated} ) => {
   return (
     <div>
-    <Navigation />
+    <Navigation isAuthenticated={isAuthenticated}/>
     <Register />
     </div>
   );
