@@ -10,8 +10,8 @@ export const Styledh1 = styled.h1`
 color: white; 
 text-transform: uppercase;
 text-align: center; 
-margin-top: 0px; 
-margin-bottom: 0px; 
+margin-top: 10px; 
+margin-bottom: 20px; 
 padding-top: 20px; 
 `;
 
@@ -61,4 +61,30 @@ export const StyledCommonName = styled.p`
    color: darkgreen; 
    text-transform: uppercase; 
    padding-top: 10px; 
+`;
+
+export const PruneContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
+export const StyledPrune = styled.div`
+  display: inline-block; 
+  align-items: center;
+  color: #002400;
+  margin-left: 20px; 
+  margin-bottom: 20px; 
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px; 
+  background-color: white;
+  border-radius: 5px; 
+  box-shadow: 0px 0px 5px white;
+  transition: transform .2s;
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 5px 15px white;
 `;
