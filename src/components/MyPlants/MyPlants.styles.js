@@ -57,6 +57,23 @@ export const StyledButton = styled.button`
     color: white; 
 `;
 
+export const StyledButton2 = styled.button`
+display: block;
+margin-left: auto;
+margin-right: auto; 
+  background-color: white;
+  color: #002400;
+  border: 1px solid #002400;
+  border-radius: 15px; 
+  padding: 10px; 
+  margin-top: 5px;
+  margin-bottom: 5px; 
+  transition: background-color .5s, color .5s;
+  &:hover {
+    background-color: darkgreen;
+    color: white; 
+`;
+
 export const StyledCommonName = styled.p`
    color: darkgreen; 
    text-transform: uppercase; 
@@ -87,4 +104,52 @@ export const StyledPrune = styled.div`
   &:hover {
     transform: scale(1.05);
     box-shadow: 0px 5px 15px white;
+    background-color: darkgreen;
+    color: white; 
+`;
+
+export const StyledWater = styled.div`
+  display: inline-block; 
+  align-items: center;
+  color: #002400;
+  margin-left: 20px; 
+  margin-bottom: 5px; 
+  margin-top: 20px; 
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px; 
+  background-color: white;
+  border-radius: 5px; 
+  box-shadow: 0px 0px 5px white;
+  transition: transform .2s;
+
+  &:hover {
+    box-shadow: 0px 5px 15px white;
+    background-color: darkgreen;
+    color: white; 
+    transform: scale(1.05);
+`;
+
+export const StyledWater2 = styled.div`
+  display: inline-block; 
+  align-items: center;
+  color: #002400;
+  margin-left: 20px; 
+  margin-bottom: 5px; 
+  margin-top: 20px; 
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px; 
+  background-color: white;
+  border-radius: 5px; 
+  box-shadow: 0px 0px 5px white;
+  transition: transform .2s;
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 5px 15px white;
+    background-color: red;
+    color: white; 
 `;

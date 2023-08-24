@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { PlantsContext } from '../Provider/Provider';
 import { useContext } from 'react';
-import { StyledBackground, Styledh1, StyledCard, StyledCardList, StyledImage, StyledButton, PruneContainer, StyledCommonName, LoadmoreButton, StyledPrune } from './MyPlants.styles';
+import { StyledBackground, Styledh1, StyledCard, StyledCardList, StyledImage, StyledButton, StyledButton2, StyledWater2, PruneContainer, StyledCommonName, LoadmoreButton, StyledPrune, StyledWater } from './MyPlants.styles';
 import defaultImage from '../../assets/default-image.jpg';
 
 const MyPlants = () => {
@@ -49,6 +49,7 @@ const MyPlants = () => {
             }
         });
     }, []);
+
     const checkWatering = (plantDetail) => {
         let benchmark;
         if (plantDetail.watering_general_benchmark && plantDetail.watering_general_benchmark.value !== null) {
@@ -66,7 +67,7 @@ const MyPlants = () => {
                 case 'Average':
                     benchmark = 7;
                     break;
-                case 'Minimal':
+                case 'Minimum':
                     benchmark = 10;
                     break;
                 case 'Never':
@@ -77,16 +78,20 @@ const MyPlants = () => {
                     break;
             }
         }
-
-        if (benchmark !== null && benchmark !== Infinity && plantDetail.last_watered) {
-            const lastWateringDate = new Date(plantDetail.last_watered);
-            const currentDate = new Date();
-            const timeDiff = currentDate.getTime() - lastWateringDate.getTime();
-            const daysSinceLastWatering = Math.floor(timeDiff / (1000 * 3600 * 24));
-            return Math.max(0, benchmark - daysSinceLastWatering);
+        if (benchmark !== null && benchmark !== Infinity) {
+            if (plantDetail.last_watered) {
+                const lastWateringDate = new Date(plantDetail.last_watered);
+                const currentDate = new Date();
+                const timeDiff = currentDate.getTime() - lastWateringDate.getTime();
+                const daysSinceLastWatering = Math.floor(timeDiff / (1000 * 3600 * 24));
+                return Math.max(0, benchmark - daysSinceLastWatering);
+            } else {
+                return benchmark;
+            }
         }
         return null;
     }
+
     const handleWaterPlant = (plantId) => {
         const plantDetail = plantDetails.find(plant => plant.id === plantId);
         if (plantDetail) {
@@ -113,36 +118,43 @@ const MyPlants = () => {
                         console.log(plantDetail);
                         return (
                             <PruneContainer>
-                                <StyledPrune key={plantDetail.id}> {plantDetail.common_name} might need to be pruned this month.
+                                <StyledPrune key={plantDetail.id}> ✂️ {plantDetail.common_name} might need to be pruned this month.
                                 </StyledPrune>
                             </PruneContainer>
                         );
                     }
                     return null;
-                })}
-                <Styledh1>Watering reminders</Styledh1>
-                {plantDetails.map(plantDetail => {
-                    const userPlant = userPlants.find(userPlant => userPlant.id === plantDetail.id);
-                    if (!userPlant) {
+                })}<Styledh1>Watering reminders</Styledh1>
+                {plantDetails
+                    .sort((a, b) => {
+                        const daysUntilNextWateringA = checkWatering(a);
+                        const daysUntilNextWateringB = checkWatering(b);
+                        return daysUntilNextWateringA - daysUntilNextWateringB;
+                    })
+                    .map(plantDetail => {
+                        const userPlant = userPlants.find(userPlant => userPlant.id === plantDetail.id);
+                        if (!userPlant) {
+                            return null;
+                        }
+                        const daysUntilNextWatering = checkWatering(plantDetail);
+                        if (daysUntilNextWatering !== null) {
+                            return (
+                                <PruneContainer>
+                                    <div key={plantDetail.id}>
+                                        {daysUntilNextWatering <= 0 ? (
+                                            <StyledWater2> 💧 {plantDetail.common_name} needs to be watered.</StyledWater2>
+                                        ) : (
+                                            <StyledWater> 💧 {plantDetail.common_name} needs to be watered in {daysUntilNextWatering} days.</StyledWater>
+                                        )}
+                                        <div>
+                                            <StyledButton2 onClick={() => handleWaterPlant(plantDetail.id)}>I watered it</StyledButton2>
+                                        </div>
+                                    </div>
+                                </PruneContainer>
+                            );
+                        }
                         return null;
-                    }
-                    const daysUntilNextWatering = checkWatering(plantDetail);
-                    if (daysUntilNextWatering !== null) {
-                        return (
-                            <PruneContainer>
-                            <div key={plantDetail.id}>
-                                {daysUntilNextWatering === 0 ? (
-                                    <StyledPrune>{plantDetail.common_name} needs to be watered.</StyledPrune>
-                                ) : (
-                                    <StyledPrune>{plantDetail.common_name} needs to be watered in {daysUntilNextWatering} days.</StyledPrune>
-                                )}
-                                <button onClick={() => handleWaterPlant(plantDetail.id)}>I watered it</button>
-                            </div>
-                            </PruneContainer>
-                        );
-                    }
-                    return null;
-                })}
+                    })}
                 <Styledh1>My plants</Styledh1>
                 <StyledCardList>
                     {plantDetails.map(plantDetail => {
