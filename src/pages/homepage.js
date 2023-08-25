@@ -87,7 +87,7 @@ const HomePage = ( { handlePlantClick, selectedPlant, handleHidePlantOverview, p
                     fruitsSelected = {fruitsSelected}
                     setFruitsSelected = {setFruitsSelected}
                     />
-            <PlantList handlePlantClick={handlePlantClick} selectedPlant={selectedPlant} handleHidePlantOverview={handleHidePlantOverview} plantDetails={plantDetails} isAuthenticated={isAuthenticated}/>
+            <PlantList handlePlantClick={handlePlantClick} selectedPlant={selectedPlant} handleHidePlantOverview={handleHidePlantOverview} plantDetails={plantDetails} isAuthenticated={isAuthenticated} />
             </>
       ) : (
                 <PlantOverview selectedPlant={selectedPlant} handleHidePlantOverview={handleHidePlantOverview} plantDetails={plantDetails} />

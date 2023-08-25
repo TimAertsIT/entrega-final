@@ -153,3 +153,31 @@ export const StyledWater2 = styled.div`
     background-color: red;
     color: white; 
 `;
+
+export const StyledInput = styled.input`
+display: inline-block; 
+align-items: center;
+color: #002400;
+margin-left: 20px; 
+margin-bottom: 5px; 
+margin-top: 20px; 
+padding-left: 20px;
+padding-right: 20px;
+padding-top: 10px;
+padding-bottom: 10px; 
+background-color: white;
+border-radius: 5px; 
+box-shadow: 0px 0px 5px white;
+transition: transform .2s;
+
+&:hover {
+  box-shadow: 0px 5px 15px white;
+  background-color: darkgreen;
+  color: white; 
+  transform: scale(1.05);
+`;
+
+export const CenteredDiv = styled.div`
+    display: flex;
+    justify-content: center;
+`;

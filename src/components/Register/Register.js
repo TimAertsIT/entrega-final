@@ -18,6 +18,8 @@ const Register = () => {
         setPassword('');
         setName('');
         setMyPlants([]); 
+        alert("You were successfully registered and will be brought to the login page")
+        window.location.href = '../login';
     }
 
     return (

@@ -29,8 +29,7 @@ const PlantList = ({ handlePlantClick, selectedPlant, isAuthenticated }) => {
     } = useContext(FilterContext);
 
     const [filteredPlantDetails, setFilteredPlantDetails] = useState([]);
-    console.log(selectedPlant);
-    console.log(isAuthenticated);
+
     useEffect(() => {
         const newFilteredPlantDetails = plantDetails.filter(plantDetail => {
             // indoor-outdoor filter
@@ -61,7 +60,7 @@ const PlantList = ({ handlePlantClick, selectedPlant, isAuthenticated }) => {
             if (averageSelected && plantDetail.watering !== "average" && plantDetail.watering !== "Average") {
                 return false;
             }
-            if (minimalSelected && plantDetail.watering !== "minimal" && plantDetail.watering !== "Minimal") {
+            if (minimalSelected && plantDetail.watering !== "minimum" && plantDetail.watering !== "Minimum") {
                 return false;
             }
             if (neverSelected && plantDetail.watering !== "never" && plantDetail.watering !== "Never") {

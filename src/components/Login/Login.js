@@ -34,6 +34,7 @@ const Login = ({ setIsAuthenticated }) => {
             setEmail('');
             setPassword('');
             setIsAuthenticated(true);
+            alert("Your login was successful")
             localStorage.setItem("loggedInEmail", email);
             window.location.href = '../';
         } else {

@@ -4,7 +4,7 @@ import Login from "../components/Login/Login";
 import Navigation from "../components/Navigation/Navigation";
 
 
-const LoginPage = ({ isAuthenticated, setIsAuthenticated }) => {
+const LoginPage = ({ isAuthenticated, setIsAuthenticated, handleLogout }) => {
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -15,7 +15,7 @@ const LoginPage = ({ isAuthenticated, setIsAuthenticated }) => {
     return (
         <div>
             <Navigation />
-            <Login setIsAuthenticated={setIsAuthenticated} />
+            <Login setIsAuthenticated={setIsAuthenticated} handleLogout={handleLogout}/>
         </div>);
 };
 export default LoginPage;

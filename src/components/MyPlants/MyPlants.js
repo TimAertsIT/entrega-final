@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import { PlantsContext } from '../Provider/Provider';
 import { useContext } from 'react';
-import { StyledBackground, Styledh1, StyledCard, StyledCardList, StyledImage, StyledButton, StyledButton2, StyledWater2, PruneContainer, StyledCommonName, LoadmoreButton, StyledPrune, StyledWater } from './MyPlants.styles';
+import { StyledBackground, Styledh1, StyledCard, StyledCardList, StyledImage, CenteredDiv, StyledButton, StyledButton2, StyledWater2, PruneContainer, StyledCommonName, LoadmoreButton, StyledPrune, StyledWater, StyledInput } from './MyPlants.styles';
 import defaultImage from '../../assets/default-image.jpg';
+import PlantOverview from '../PlantOverview/PlantOverview';
 
 const MyPlants = () => {
     const { plants, plantDetails } = useContext(PlantsContext);
+    const [searchTerm, setSearchTerm] = useState('');
     const loggedInEmail = localStorage.getItem("loggedInEmail");
     const users = JSON.parse(localStorage.getItem("users"));
     const user = users.find((user) => user.email === loggedInEmail);
@@ -14,6 +16,15 @@ const MyPlants = () => {
         const wateredPlantsStr = localStorage.getItem('wateredPlants');
         return wateredPlantsStr ? JSON.parse(wateredPlantsStr) : {};
     });
+    const [selectedPlant, setSelectedPlant] = useState(null);
+
+    const handleSelectPlant = plant => {
+        setSelectedPlant(plant);
+    };
+
+    const handleHidePlantOverview = () => {
+        setSelectedPlant(null);
+    };
 
 
     useEffect(() => {
@@ -108,8 +119,15 @@ const MyPlants = () => {
     return (
         <div>
             <StyledBackground>
+                <Styledh1>Search your plants</Styledh1>
+                <CenteredDiv>
+                <StyledInput
+                type="text"
+                placeholder="Search by common name"
+                onChange={event => setSearchTerm(event.target.value)}
+            /> </CenteredDiv>
                 <Styledh1>Pruning reminders</Styledh1>
-                {plantDetails.map(plantDetail => {
+                {plantDetails.filter(plantDetail => plantDetail.common_name.toLowerCase().includes(searchTerm.toLowerCase())).map(plantDetail => {
                     const userPlant = userPlants.find(userPlant => userPlant.id === plantDetail.id);
                     if (!userPlant) {
                         return null;
@@ -126,6 +144,7 @@ const MyPlants = () => {
                     return null;
                 })}<Styledh1>Watering reminders</Styledh1>
                 {plantDetails
+                .filter(plantDetail => plantDetail.common_name.toLowerCase().includes(searchTerm.toLowerCase()))
                     .sort((a, b) => {
                         const daysUntilNextWateringA = checkWatering(a);
                         const daysUntilNextWateringB = checkWatering(b);
@@ -156,8 +175,12 @@ const MyPlants = () => {
                         return null;
                     })}
                 <Styledh1>My plants</Styledh1>
-                <StyledCardList>
-                    {plantDetails.map(plantDetail => {
+                {selectedPlant ? (
+                    <PlantOverview selectedPlant={selectedPlant} handleHidePlantOverview={handleHidePlantOverview} plantDetails={plantDetails} />
+                ) : (
+                    <>
+                    <StyledCardList>
+                {plantDetails.filter(plantDetail => plantDetail.common_name.toLowerCase().includes(searchTerm.toLowerCase())).map(plantDetail => {
                         const userPlant = userPlants.find(userPlant => userPlant.id === plantDetail.id);
                         if (!userPlant) {
                             return null;
@@ -165,17 +188,18 @@ const MyPlants = () => {
                         return (
                             <StyledCard key={userPlant.id}>
                                 {userPlant.default_image ? (
-                                    <StyledImage src={userPlant.default_image.regular_url} alt={userPlant.common_name} />
+                                    <StyledImage onClick={() => handleSelectPlant(userPlant)} src={userPlant.default_image.regular_url} alt={userPlant.common_name} />
                                 ) : (
-                                    <StyledImage src={defaultImage} alt={userPlant.common_name} height="382" />
+                                    <StyledImage onClick={() => handleSelectPlant(userPlant)} src={defaultImage} alt={userPlant.common_name} height="382" />
                                 )}
-                                <StyledCommonName >
+                                <StyledCommonName onClick={() => handleSelectPlant(userPlant)}>
                                     {userPlant.common_name}</StyledCommonName>
                                 <StyledButton onClick={() => handleRemoveFromMyPlants(userPlant)}>Remove from MyPlants</StyledButton>
                             </StyledCard>
                         );
                     })}
                 </StyledCardList>
+                </>)}
             </StyledBackground>
         </div>
     );
