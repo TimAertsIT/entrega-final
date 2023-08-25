@@ -27,7 +27,11 @@ export const StyledCard = styled.div`
 
   &:hover {
     transform: scale(1.05);
-    box-shadow: 0px 5px 15px white;
+    box-shadow: 0px 5px 15px white;}
+  
+    @media (max-width: 600px) {
+      width: calc(100% - 40px);
+    }
 `;
 
 export const StyledCardList = styled.ul`

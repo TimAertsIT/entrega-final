@@ -1,5 +1,5 @@
 import defaultImage from '../../assets/default-image.jpg';
-import { StyledBackground, Styledh1, StyledImg, StyledCard, StyledP, StyledDetail } from './PlantOverview.styles';
+import { StyledBackground, Styledh1, StyledImg, StyledCard, StyledP, StyledDetail, StyledBox } from './PlantOverview.styles';
 
 const PlantOverview = ({ selectedPlant, handleHidePlantOverview, plantDetails }) => {
   console.log(selectedPlant);
@@ -17,10 +17,12 @@ const PlantOverview = ({ selectedPlant, handleHidePlantOverview, plantDetails })
           <StyledImg src={defaultImage} alt={selectedPlant.common_name} />
         )}
         <StyledP>{plantDetail.description}</StyledP>
+        <StyledBox>
           <StyledDetail>{plantDetail.dimension}</StyledDetail>
           <StyledDetail>Pruning months: {pruningMonths}</StyledDetail>
           <StyledDetail>Sunlight: {sunlight}</StyledDetail>
           <StyledDetail>Watering: {plantDetail.watering}</StyledDetail>
+          </StyledBox>
       </StyledCard>
     </StyledBackground>
   );

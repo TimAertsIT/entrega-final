@@ -23,7 +23,7 @@ const Router = ({ isAuthenticated,
                 }
             />
             <Route path="/login" element={<LoginPage isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />} />
-            <Route path="*" element={<NotFoundPage />} />
+            <Route path="*" element={<NotFoundPage isAuthenticated={isAuthenticated} handleLogout={handleLogout}/>} />
         </Routes>
     </BrowserRouter >
     ;

@@ -28,7 +28,10 @@ export const StyledCard = styled.div`
 
   &:hover {
     transform: scale(1.05);
-    box-shadow: 0px 5px 15px white;
+    box-shadow: 0px 5px 15px white;}
+    @media (max-width: 600px) {
+        width: calc(100% - 40px);
+      }
 `;
 
 export const StyledCardList = styled.ul`
@@ -63,9 +66,14 @@ margin-left: auto;
 margin-right: auto; 
   background-color: white;
   color: #002400;
-  border: 1px solid #002400;
+  border: none; 
+  font-weight: bold; 
   border-radius: 15px; 
-  padding: 10px; 
+  padding-top: 10px; 
+  padding-bottom: 10px;
+  padding-left: 25px;
+  padding-right: 25px; 
+  box-shadow: 0px 5px 10px white;
   margin-top: 5px;
   margin-bottom: 5px; 
   transition: background-color .5s, color .5s;
@@ -91,6 +99,7 @@ export const StyledPrune = styled.div`
   align-items: center;
   color: #002400;
   margin-left: 20px; 
+  margin-right: 20px; 
   margin-bottom: 20px; 
   padding-left: 20px;
   padding-right: 20px;
@@ -100,6 +109,7 @@ export const StyledPrune = styled.div`
   border-radius: 5px; 
   box-shadow: 0px 0px 5px white;
   transition: transform .2s;
+  text-align: center; 
 
   &:hover {
     transform: scale(1.05);
@@ -113,6 +123,7 @@ export const StyledWater = styled.div`
   align-items: center;
   color: #002400;
   margin-left: 20px; 
+  margin-right: 20px; 
   margin-bottom: 5px; 
   margin-top: 20px; 
   padding-left: 20px;
@@ -123,6 +134,7 @@ export const StyledWater = styled.div`
   border-radius: 5px; 
   box-shadow: 0px 0px 5px white;
   transition: transform .2s;
+  text-align: center; 
 
   &:hover {
     box-shadow: 0px 5px 15px white;
@@ -136,6 +148,7 @@ export const StyledWater2 = styled.div`
   align-items: center;
   color: #002400;
   margin-left: 20px; 
+  margin-right: 20px; 
   margin-bottom: 5px; 
   margin-top: 20px; 
   padding-left: 20px;
@@ -146,6 +159,7 @@ export const StyledWater2 = styled.div`
   border-radius: 5px; 
   box-shadow: 0px 0px 5px white;
   transition: transform .2s;
+  text-align: center; 
 
   &:hover {
     transform: scale(1.05);
@@ -159,6 +173,7 @@ display: inline-block;
 align-items: center;
 color: #002400;
 margin-left: 20px; 
+margin-right: 20px; 
 margin-bottom: 5px; 
 margin-top: 20px; 
 padding-left: 20px;
@@ -180,4 +195,8 @@ transition: transform .2s;
 export const CenteredDiv = styled.div`
     display: flex;
     justify-content: center;
+`;
+
+export const StyledSpan = styled.span`
+ font-weight: bold; 
 `;

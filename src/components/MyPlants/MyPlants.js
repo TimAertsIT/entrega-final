@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { PlantsContext } from '../Provider/Provider';
 import { useContext } from 'react';
-import { StyledBackground, Styledh1, StyledCard, StyledCardList, StyledImage, CenteredDiv, StyledButton, StyledButton2, StyledWater2, PruneContainer, StyledCommonName, LoadmoreButton, StyledPrune, StyledWater, StyledInput } from './MyPlants.styles';
+import { StyledBackground, Styledh1, StyledCard, StyledCardList, StyledImage, CenteredDiv, StyledButton, StyledButton2, StyledWater2, StyledSpan, PruneContainer, StyledCommonName, LoadmoreButton, StyledPrune, StyledWater, StyledInput } from './MyPlants.styles';
 import defaultImage from '../../assets/default-image.jpg';
 import PlantOverview from '../PlantOverview/PlantOverview';
 
@@ -17,6 +17,7 @@ const MyPlants = () => {
         return wateredPlantsStr ? JSON.parse(wateredPlantsStr) : {};
     });
     const [selectedPlant, setSelectedPlant] = useState(null);
+    const [hoveredImageUrl, setHoveredImageUrl] = useState(null);
 
     const handleSelectPlant = plant => {
         setSelectedPlant(plant);
@@ -136,7 +137,7 @@ const MyPlants = () => {
                         console.log(plantDetail);
                         return (
                             <PruneContainer>
-                                <StyledPrune key={plantDetail.id}> ✂️ {plantDetail.common_name} might need to be pruned this month.
+                                <StyledPrune key={plantDetail.id}> ✂️ <StyledSpan>{plantDetail.common_name} </StyledSpan> might need to be pruned this month.
                                 </StyledPrune>
                             </PruneContainer>
                         );
@@ -161,11 +162,11 @@ const MyPlants = () => {
                                 <PruneContainer>
                                     <div key={plantDetail.id}>
                                         {daysUntilNextWatering <= 0 ? (
-                                            <StyledWater2> 💧 {plantDetail.common_name} needs to be watered.</StyledWater2>
+                                            <StyledWater2> 💧 <StyledSpan> {plantDetail.common_name}</StyledSpan> needs to be watered.</StyledWater2>
                                         ) : (
-                                            <StyledWater> 💧 {plantDetail.common_name} needs to be watered in {daysUntilNextWatering} days.</StyledWater>
+                                            <StyledWater> 💧 <StyledSpan>{plantDetail.common_name}</StyledSpan> needs to be watered in {daysUntilNextWatering} days.</StyledWater>
                                         )}
-                                        <div>
+        <div>
                                             <StyledButton2 onClick={() => handleWaterPlant(plantDetail.id)}>I watered it</StyledButton2>
                                         </div>
                                     </div>

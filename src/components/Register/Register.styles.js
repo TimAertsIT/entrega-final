@@ -18,6 +18,9 @@ export const StyledCard = styled.div`
   align-items: center;
   margin-top: 30px;
   margin-bottom: 30px; 
+  @media (max-width: 600px) {
+    width: 85%;
+  }
 `;
 
 export const StyledH1 = styled.h1`
