@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import pruning from '../../assets/pruning.jpg';
+import watering from '../../assets/watering.jpg';
 
 export const StyledBackground = styled.div`
 background-color: #002400; 
@@ -10,9 +12,57 @@ export const Styledh1 = styled.h1`
 color: white; 
 text-transform: uppercase;
 text-align: center; 
-margin-top: 10px; 
+margin-top: 20px; 
 margin-bottom: 20px; 
 padding-top: 20px; 
+z-index: 1;
+position: relative; 
+`;
+
+export const PictureDiv = styled.div`
+background-image: url(${pruning});
+background-size: cover;
+display: flex;
+  align-items: center;
+justify-content: center;
+position: relative;
+height: 300px; 
+border-top: 3px solid white;
+border-bottom: 3px solid white; 
+margin-top: 20px; 
+margin-bottom: 20px; 
+&::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}`
+
+export const PictureDiv2 = styled.div`
+background-image: url(${watering});
+background-size: cover;
+background-position: center;
+display: flex;
+  align-items: center;
+justify-content: center;
+position: relative;
+height: 300px; 
+border-top: 3px solid white;
+border-bottom: 3px solid white; 
+margin-top: 20px; 
+margin-bottom: 20px; 
+&::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
 `;
 
 export const StyledCard = styled.div`
@@ -101,6 +151,7 @@ export const StyledPrune = styled.div`
   margin-left: 20px; 
   margin-right: 20px; 
   margin-bottom: 20px; 
+  margin-top: 20px; 
   padding-left: 20px;
   padding-right: 20px;
   padding-top: 10px;
@@ -174,8 +225,8 @@ align-items: center;
 color: #002400;
 margin-left: 20px; 
 margin-right: 20px; 
-margin-bottom: 5px; 
-margin-top: 20px; 
+margin-bottom: 20px; 
+margin-top: 10px; 
 padding-left: 20px;
 padding-right: 20px;
 padding-top: 10px;
