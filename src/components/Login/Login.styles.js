@@ -8,7 +8,7 @@ export const StyledBackground = styled.div`
 `;
 
 export const StyledCard = styled.div`
-   background-color: white; 
+background-color: white; 
   border-radius: 20px;
   width: 50%; 
   margin-right: auto;

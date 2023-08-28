@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { PlantsContext } from '../Provider/Provider';
 import { useContext } from 'react';
-import { StyledBackground, Styledh1, StyledCard, PictureDiv, PictureDiv2, StyledCardList, StyledImage, CenteredDiv, StyledButton, StyledButton2, StyledWater2, StyledSpan, PruneContainer, StyledCommonName, LoadmoreButton, StyledPrune, StyledWater, StyledInput } from './MyPlants.styles';
+import { StyledBackground, Styledh1, StyledCard, PictureDiv, PictureDiv2, StyledCardList, StyledImage, CenteredDiv, StyledButton, StyledButton2, StyledWater2, StyledSpan, PruneContainer, StyledCommonName, LoadmoreButton, StyledPrune, StyledWater, StyledInput, StyledSearchh1, StyledImage2 } from './MyPlants.styles';
 import defaultImage from '../../assets/default-image.jpg';
 import PlantOverview from '../PlantOverview/PlantOverview';
 
@@ -17,7 +17,6 @@ const MyPlants = () => {
         return wateredPlantsStr ? JSON.parse(wateredPlantsStr) : {};
     });
     const [selectedPlant, setSelectedPlant] = useState(null);
-    const [hoveredImageUrl, setHoveredImageUrl] = useState(null);
 
     const handleSelectPlant = plant => {
         setSelectedPlant(plant);
@@ -120,7 +119,7 @@ const MyPlants = () => {
     return (
         <div>
             <StyledBackground>
-                <Styledh1>Search your plants</Styledh1>
+                <StyledSearchh1>Search your plants</StyledSearchh1>
                 <CenteredDiv>
                     <StyledInput
                         type="text"
@@ -146,8 +145,8 @@ const MyPlants = () => {
                     }
                     return null;
                 })}
-                <PictureDiv2> 
-                <Styledh1>Watering reminders</Styledh1>
+                <PictureDiv2>
+                    <Styledh1>Watering reminders</Styledh1>
                 </PictureDiv2>
                 {plantDetails
                     .filter(plantDetail => plantDetail.common_name.toLowerCase().includes(searchTerm.toLowerCase()))
@@ -196,7 +195,7 @@ const MyPlants = () => {
                                         {userPlant.default_image ? (
                                             <StyledImage onClick={() => handleSelectPlant(userPlant)} src={userPlant.default_image.regular_url} alt={userPlant.common_name} />
                                         ) : (
-                                            <StyledImage onClick={() => handleSelectPlant(userPlant)} src={defaultImage} alt={userPlant.common_name} height="382" />
+                                            <StyledImage2 onClick={() => handleSelectPlant(userPlant)} src={defaultImage} alt={userPlant.common_name} />
                                         )}
                                         <StyledCommonName onClick={() => handleSelectPlant(userPlant)}>
                                             {userPlant.common_name}</StyledCommonName>

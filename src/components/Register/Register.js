@@ -6,7 +6,7 @@ const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
-    const [myPlants, setMyPlants] = useState([]); 
+    const [myPlants, setMyPlants] = useState([]);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -17,7 +17,7 @@ const Register = () => {
         setEmail('');
         setPassword('');
         setName('');
-        setMyPlants([]); 
+        setMyPlants([]);
         alert("You were successfully registered and will be brought to the login page")
         window.location.href = '../login';
     }

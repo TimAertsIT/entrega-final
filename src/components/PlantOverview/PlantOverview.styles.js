@@ -9,7 +9,7 @@ justify-content: center;
 align-items: center;
 height: 100vh;
 
-@media (max-width: 600px) {
+@media (max-width: 1023px) {
     height: 100%; 
   }
 `;
@@ -47,7 +47,7 @@ border-radius: 10px;
 padding-bottom: 15px; 
 box-shadow: 0px 8px 16px rgba(255, 255, 255, 0.8);
 
-@media (max-width: 600px) {
+@media (max-width: 1023px) {
     width: 90%;
     margin-top: 10px;
     margin-bottom: 10px; 

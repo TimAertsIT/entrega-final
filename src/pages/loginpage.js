@@ -15,7 +15,7 @@ const LoginPage = ({ isAuthenticated, setIsAuthenticated, handleLogout }) => {
     return (
         <div>
             <Navigation />
-            <Login setIsAuthenticated={setIsAuthenticated} handleLogout={handleLogout}/>
+            <Login setIsAuthenticated={setIsAuthenticated} handleLogout={handleLogout} />
         </div>);
 };
 export default LoginPage;

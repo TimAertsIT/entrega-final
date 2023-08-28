@@ -22,7 +22,7 @@ const PlantOverview = ({ selectedPlant, handleHidePlantOverview, plantDetails })
           <StyledDetail>Pruning months: {pruningMonths}</StyledDetail>
           <StyledDetail>Sunlight: {sunlight}</StyledDetail>
           <StyledDetail>Watering: {plantDetail.watering}</StyledDetail>
-          </StyledBox>
+        </StyledBox>
       </StyledCard>
     </StyledBackground>
   );

@@ -1,6 +1,6 @@
 import { PlantsContext } from '../Provider/Provider';
 import { useContext } from 'react';
-import { StyledBackground, Styledh1, StyledCard, StyledCardList, StyledImage, StyledButton, StyledCommonName, LoadmoreButton } from './PlantList.styles';
+import { StyledBackground, Styledh1, StyledCard, StyledCardList, StyledImage, StyledButton, StyledCommonName, LoadmoreButton, StyledImage2 } from './PlantList.styles';
 import defaultImage from '../../assets/default-image.jpg';
 import { FilterContext } from '../Provider/FilterContext';
 import { useState, useEffect } from "react";
@@ -32,15 +32,12 @@ const PlantList = ({ handlePlantClick, selectedPlant, isAuthenticated }) => {
 
     useEffect(() => {
         const newFilteredPlantDetails = plantDetails.filter(plantDetail => {
-            // indoor-outdoor filter
             if (indoorSelected && !plantDetail.indoor) {
                 return false;
             }
             if (outdoorSelected && plantDetail.indoor) {
                 return false;
             }
-
-            // sunlight filter
             if (fullShadeSelected && !plantDetail.sunlight.includes("full shade")) {
                 return false;
             }
@@ -53,7 +50,6 @@ const PlantList = ({ handlePlantClick, selectedPlant, isAuthenticated }) => {
             if (fullSunSelected && !plantDetail.sunlight.includes("full sun")) {
                 return false;
             }
-            // water filter 
             if (frequentSelected && plantDetail.watering !== "frequent" && plantDetail.watering !== "Frequent") {
                 return false;
             }
@@ -66,7 +62,6 @@ const PlantList = ({ handlePlantClick, selectedPlant, isAuthenticated }) => {
             if (neverSelected && plantDetail.watering !== "never" && plantDetail.watering !== "Never") {
                 return false;
             }
-            // other filters
             if (petsSelected && plantDetail.poisonous_to_pets !== 0) {
                 return false;
             }
@@ -126,10 +121,10 @@ const PlantList = ({ handlePlantClick, selectedPlant, isAuthenticated }) => {
                         return (
                             <StyledCard key={plant.id}>
                                 {plant.default_image ? (
-                                    <StyledImage onClick={() => handlePlantClick(plant)} src={plant.default_image.regular_url} alt={plant.common_name} />
-                                ) : (
-                                    <StyledImage onClick={() => handlePlantClick(plant)} src={defaultImage} alt={plant.common_name} height="382" />
-                                )}
+                                        <StyledImage onClick={() => handlePlantClick(plant)} src={plant.default_image.regular_url} alt={plant.common_name} />
+                                    ) : (
+                                        <StyledImage2 onClick={() => handlePlantClick(plant)} src={defaultImage} alt={plant.common_name} />
+                                    )}
                                 <StyledCommonName onClick={() => handlePlantClick(plant)} >
                                     {plant.common_name}</StyledCommonName>
                                 <StyledButton onClick={() => handleAddToMyPlants(plant, isAuthenticated)}>Add to MyPlants</StyledButton>

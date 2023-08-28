@@ -14,7 +14,7 @@ const App = () => {
   const handlePlantClick = (plant) => {
     setSelectedPlant(plant);
   }
-  
+
   useEffect(() => {
     localStorage.setItem("isAuthenticated", JSON.stringify(isAuthenticated));
   }, [isAuthenticated]);
@@ -26,7 +26,7 @@ const App = () => {
 
   const handleHidePlantOverview = () => {
     setSelectedPlant(null);
-  }; 
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -67,14 +67,14 @@ const App = () => {
     <>
       <GlobalStyle />
       <PlantsContext.Provider value={{ plants, plantDetails, loadMore }}>
-        <Router 
-        isAuthenticated={isAuthenticated}
-        setIsAuthenticated={setIsAuthenticated}
-        handlePlantClick={handlePlantClick}
-        selectedPlant={selectedPlant}
-        handleHidePlantOverview={handleHidePlantOverview}
-        plantDetails={plantDetails}
-        handleLogout={handleLogout}
+        <Router
+          isAuthenticated={isAuthenticated}
+          setIsAuthenticated={setIsAuthenticated}
+          handlePlantClick={handlePlantClick}
+          selectedPlant={selectedPlant}
+          handleHidePlantOverview={handleHidePlantOverview}
+          plantDetails={plantDetails}
+          handleLogout={handleLogout}
         />
       </PlantsContext.Provider>
     </>

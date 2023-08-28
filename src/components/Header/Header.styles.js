@@ -8,10 +8,10 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 margin-top: 30px; 
-    position: relative;
-  background-image: url(${backgroundImage});
-  background-size: cover;
-  background-position: center;
+position: relative;
+background-image: url(${backgroundImage});
+background-size: cover;
+background-position: center;
   
   &:before {
     content: '';
@@ -28,5 +28,7 @@ margin-top: 30px;
     position: relative;
     color: white;
     text-align: center; 
+    padding-left: 3px;
+    padding-right: 3px; 
   }
 `;
